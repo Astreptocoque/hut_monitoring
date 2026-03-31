@@ -39,14 +39,19 @@ GitHub Actions (cron every 30 min)
 
 1. Go to [github.com](https://github.com) and create a **free account** if you don't have one
 2. Click **New repository**, name it `hut-checker`, set it to **Private**, click **Create**
-3. Upload the three files from this folder:
-   - `check_hut.py`
-   - `requirements.txt`
-   - `.github/workflows/check_hut.yml` ← make sure to keep the folder structure
+3. Upload the files from this folder:
+   - `src/check_hut.py`
+   - `config/huts.yaml`
+   - `.github/workflows/check_hut.yml` ← keep the folder structure
+   - `pyproject.toml`
 
-   The easiest way is to use the GitHub web interface:
-   - Click **Add file → Upload files** for `check_hut.py` and `requirements.txt`
-   - For the workflow, click **Add file → Create new file**, type `.github/workflows/check_hut.yml` as the filename, and paste its content
+   Using GitHub web interface:
+   - Click **Add file → Upload files**
+   - For the workflow, click **Add file → Create new file**, type `.github/workflows/check_hut.yml` as the filename
+
+## Local Development
+
+For local development and debugging, see **[docs/LOCAL_DEVELOPMENT.md](./docs/LOCAL_DEVELOPMENT.md)**
 
 ---
 

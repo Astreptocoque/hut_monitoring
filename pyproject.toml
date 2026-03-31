@@ -2,6 +2,12 @@
 requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages]
+find = {where = ["src"]}
+
 [project]
 name = "hut-monitoring"
 version = "1.0.0"
@@ -28,6 +34,7 @@ dependencies = [
     "playwright",
     "httpx",
     "pyyaml",
+    "python-dotenv",
 ]
 
 [project.optional-dependencies]

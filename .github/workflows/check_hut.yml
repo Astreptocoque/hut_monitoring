@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install playwright httpx pyyaml
+          pip install -e .
           playwright install chromium --with-deps
 
       - name: Run availability check
@@ -37,7 +37,7 @@ jobs:
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
           HEADLESS:            "true"
-        run: python check_hut.py
+        run: python src/check_hut.py
 
       - name: Upload debug screenshot (on failure)
         if: failure()

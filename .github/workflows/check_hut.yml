@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install playwright httpx
+          pip install playwright httpx pyyaml
           playwright install chromium --with-deps
 
       - name: Run availability check

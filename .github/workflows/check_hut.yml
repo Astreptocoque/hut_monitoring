@@ -34,9 +34,6 @@ jobs:
         env:
           HUT_EMAIL:           ${{ secrets.HUT_EMAIL }}
           HUT_PASSWORD:        ${{ secrets.HUT_PASSWORD }}
-          TARGET_HUT:          ${{ secrets.TARGET_HUT }}
-          TARGET_DATE:         ${{ secrets.TARGET_DATE }}
-          MIN_SPOTS:           ${{ secrets.MIN_SPOTS }}
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
           HEADLESS:            "true"

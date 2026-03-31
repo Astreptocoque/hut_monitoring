@@ -1,0 +1,15 @@
+# Hut availability checker configuration
+# Add one entry per hut/date combination you want to monitor.
+# Multiple entries are supported.
+
+huts:
+  - name: "Britanniahütte SAC, CH" # exact hut name as shown on hut-reservation.org
+    date: "206-04-11"              # arrival date, format YYYY-MM-DD
+    # departure_date: "2025-07-16" # optional: defaults to arrival + 1 night
+    min_spots: 3                   # alert if at least this many places are free
+
+  # Add more entries as needed:
+  # - name: "Cabane des Dix"
+  #   date: "2025-08-01"
+  #   departure_date: "2025-07-16" # optional: defaults to arrival + 1 night
+  #   min_spots: 2

@@ -27,6 +27,7 @@ classifiers = [
 dependencies = [
     "playwright",
     "httpx",
+    "pyyaml",
 ]
 
 [project.optional-dependencies]

@@ -1,0 +1,51 @@
+name: Hut Availability Checker
+
+on:
+  schedule:
+    # Runs every 30 minutes — adjust as you like (cron syntax, UTC time)
+    # Examples:
+    #   "*/15 * * * *"  → every 15 minutes
+    #   "0 6-20 * * *"  → once per hour between 06:00 and 20:00 UTC
+    - cron: "*/30 * * * *"
+
+  # Allows you to trigger the check manually from the GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install playwright httpx
+          playwright install chromium --with-deps
+
+      - name: Run availability check
+        env:
+          HUT_EMAIL:           ${{ secrets.HUT_EMAIL }}
+          HUT_PASSWORD:        ${{ secrets.HUT_PASSWORD }}
+          TARGET_HUT:          ${{ secrets.TARGET_HUT }}
+          TARGET_DATE:         ${{ secrets.TARGET_DATE }}
+          MIN_SPOTS:           ${{ secrets.MIN_SPOTS }}
+          TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
+          HEADLESS:            "true"
+        run: python check_hut.py
+
+      - name: Upload debug screenshot (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshot
+          path: debug_screenshot.png
+          if-no-files-found: ignore

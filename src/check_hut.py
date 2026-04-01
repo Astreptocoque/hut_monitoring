@@ -447,15 +447,17 @@ async def check_hut(
 
         if best_day_idx is None:
             logger.info(f"[4/4] No day has {min_spots}+ spot(s). Best available: {max(availabilities) if availabilities else 0} spot(s).")
-            # return without sending a message to telegram
-            msg = (
-            f"<b>Hut has no availability yet 🥺!</b>\n\n"
-            f"<b>Hut:</b> {target_hut}\n"
-            f"<b>Arrival:</b> {arrival_date}\n"
-            f"<b>Departure:</b> {departure_date}\n"
-            )
-            logger.debug(f"Message preview:\n{msg}\n")
-            await send_telegram(msg)
+
+            # send a message of failure only in case of dev environment            
+            if not IS_GITHUB_ACTIONS:
+                msg = (
+                f"<b>Hut has no availability yet 🥺!</b>\n\n"
+                f"<b>Hut:</b> {target_hut}\n"
+                f"<b>Arrival:</b> {arrival_date}\n"
+                f"<b>Departure:</b> {departure_date}\n"
+                )
+                logger.debug(f"Message preview:\n{msg}\n")
+                await send_telegram(msg)
             return
 
         logger.info(f"[4/4] Day {best_day_idx} has {best_availability} free place(s) — meets threshold of {min_spots}!")

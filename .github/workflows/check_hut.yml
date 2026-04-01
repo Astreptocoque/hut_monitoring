@@ -6,7 +6,7 @@ on:
     # Examples:
     #   "*/15 * * * *"  → every 15 minutes
     #   "0 6-20 * * *"  → once per hour between 06:00 and 20:00 UTC
-    - cron: "*/30 * * * *"
+    - cron: "0 * * * *"
 
   # Allows you to trigger the check manually from the GitHub Actions UI
   workflow_dispatch:
